@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/strings/STRINGS/problems/DNASTORAGE
+
 for _ in range(int(input())): #test cases searches
     N = int(input())  # Length of the string
     S = input()  # String

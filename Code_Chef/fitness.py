@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/basic-math/BASICMATH/problems/FIT
+
 T = int(input())
 
 for i in range (T):

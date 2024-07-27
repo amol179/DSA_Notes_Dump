@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/arrays/ARRAYS/problems/UWCOI20A
+
 Test = int(input())
 
 for _ in range(Test):

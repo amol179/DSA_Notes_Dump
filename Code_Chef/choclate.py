@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/basic-math/BASICMATH/problems/CCHOCOLATES
+
 def max_chocolates(X, Y, Z):
     # Calculate the total money Chef has
     total_money = (X * 5) + (Y * 10)

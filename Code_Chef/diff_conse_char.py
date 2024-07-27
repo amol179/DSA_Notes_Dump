@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/strings/STRINGS/problems/DIFFCONSEC
+
 #S binary string
 
 Test = int(input())

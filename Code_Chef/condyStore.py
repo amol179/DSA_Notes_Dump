@@ -1,3 +1,4 @@
+#https://www.codechef.com/practice/course/basic-math/BASICMATH/problems/CANDYSTORE
 
 Test = int(input())
 

@@ -1,3 +1,4 @@
+#https://www.codechef.com/practice/course/arrays/ARRAYS/problems/KITCHENCOST
 
 t = int(input())
 

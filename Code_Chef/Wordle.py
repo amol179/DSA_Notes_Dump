@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/strings/STRINGS/problems/WORDL 
+
 Test = int(input())
 
 for _ in range(Test):

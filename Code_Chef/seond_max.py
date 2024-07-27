@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/basic-math/BASICMATH/problems/SNDMAX
+
 # no of elements
 N = int(input())
 

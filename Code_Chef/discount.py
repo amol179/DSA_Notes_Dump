@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/arrays/ARRAYS/problems/DISCOUNTT
+
 def should_buy_coupon(N, X, Y, prices):
     total_without_coupon = sum(prices)
     total_with_coupon = X + sum(max(0, price - Y) for price in prices)

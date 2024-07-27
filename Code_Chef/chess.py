@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/strings/STRINGS/problems/WCC
+
 # if win gets 2 points for each game 60x of the prize money,
 # if lose gets 0 point for each game and 40x of money.
 # if Tied then previous winner gets 55x and challenger 45x

@@ -1,3 +1,5 @@
+#https://www.codechef.com/practice/course/arrays/ARRAYS/problems/SEARCHINARR
+
 N = 5
 X = 10
 A = ["7", "3", "5", "2", "1"]
