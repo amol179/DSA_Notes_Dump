@@ -11,7 +11,7 @@ for _ in range(int(input())):
     M = sorted(A[0:N:2], reverse=True)
     T = sorted(A[1:N:2])
 
-    for i in range(K, len(M), len(T)):
+    for i in range(min(K, len(M), len(T))):
         if T[i] < M[i]:
             M[i], T[i] = T[i], M[i]
         else:
