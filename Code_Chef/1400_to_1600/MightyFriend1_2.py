@@ -1,3 +1,5 @@
+# isme time limit exceed ara tha
+# answer correct tha
 for _ in range(int(input())):
     A = []
     N, K = map(int, input().split())

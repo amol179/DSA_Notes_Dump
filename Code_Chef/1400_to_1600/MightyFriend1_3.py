@@ -1,8 +1,7 @@
 for _ in range(int(input())):
-    A = []
+
     N, K = map(int, input().split())
-    M = []
-    T = []
+
     M_score = 0
     T_score = 0
 
