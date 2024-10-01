@@ -10,14 +10,15 @@ for _ in range(int(input())):
 
     M = sorted(A[0:N:2], reverse=True)
     T = sorted(A[1:N:2])
-    i = 0
-    j = 0
-    while i < len(M) and j < len(T) and M[i] > T[j]:
-        for i in range(K):
-            M_score = M_score - M[i] + T[j]
-            T_score = T_score - T[j] + M[i]
-            i += 1
-            j += 1
+
+    for i in range(K, len(M), len(T)):
+        if T[i] < M[i]:
+            M[i], T[i] = T[i], M[i]
+        else:
+            break
+
+    M_score = sum(M)
+    T_score = sum(T)
 
     if T_score > M_score:
         print("Yes")
