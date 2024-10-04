@@ -8,7 +8,6 @@ for _ in range(T):
 
     if L <= 1:
         print("Romos")
-        break
 
     if L >= 2:
         for i in range(S):
@@ -16,8 +15,6 @@ for _ in range(T):
                 S.remove(S[i] and S[i + 1])
                 if i <= 1:
                     print("Zlatan")
-                break
 
             else:
                 print("Romos")
-                break
