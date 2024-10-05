@@ -7,16 +7,16 @@ for _ in range(T):
     L = len(S)
 
     if L <= 1:
-        print("Romos")
+        print("Ramos")
 
     for i in range(L - 1):
         if L <= 1:
-            print("Romos")
+            print("Ramos")
         if S[i] != S[i + 1]:
             S.remove(S[i] and S[i + 1])
             if i <= 1:
                 print("Zlatan")
                 break
         else:
-            print("Romos")
+            print("Ramos")
             break

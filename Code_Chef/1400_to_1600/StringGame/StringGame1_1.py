@@ -7,7 +7,7 @@ for _ in range(T):
     L = len(S)
 
     if L <= 1:
-        print("Romos")
+        print("Ramos")
 
     if L >= 2:
         for i in range(L - 1):
@@ -17,4 +17,4 @@ for _ in range(T):
                     print("Zlatan")
 
             else:
-                print("Romos")
+                print("Ramos")
