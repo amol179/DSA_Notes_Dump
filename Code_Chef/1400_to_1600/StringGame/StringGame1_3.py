@@ -27,7 +27,9 @@ for _ in range(T):
         else:
             print("Zlatan")
     elif a < b:
-        if a != 0:
+        if a == 0:
+            print("Ramus")
+        elif a != 0:
             if a % 2 == 0:
                 print("Ramus")
             else:
@@ -35,7 +37,9 @@ for _ in range(T):
         else:
             print("Zlatan")
     elif a > b:
-        if b != 0:
+        if b == 0:
+            print("Ramus")
+        elif b != 0:
             if b % 2 == 0:
                 print("Ramus")
             else:
