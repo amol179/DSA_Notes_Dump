@@ -12,15 +12,17 @@ for _ in range(T):
 
     L = len(TDA)
 
-    entry = []
+    i = 0
+    j = 0
     guests = 0
-    maxguest = 0
-    for i in range(L):
-        entry.append((TDA[i][0], 1))
-        entry.append((TDA[i][1], -1))
+    room = 0
+    while i < L:
+        if A[i] < D[j]:
+            guests += 1
+            room = max(room, guests)
+            i += 1
+        else:
+            guests -= 1
+            j += 1
 
-    for i in entry:
-        guests += i[1]
-        maxguest = max(maxguest, guests)
-
-    print(maxguest)
+    print(room)
