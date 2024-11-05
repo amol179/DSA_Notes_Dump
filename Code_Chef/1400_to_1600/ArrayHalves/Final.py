@@ -6,12 +6,9 @@ for _ in range(t):
 
     count = 0
 
-    left = []
-    right = []
-    for i in range(N + 1):
-        if A[i] > A[i + 1]:
-            A[i], A[i + 1] = A[i + 1], A[i]
-            count += 1
+    for i in range(2 * N):
+        if A[i] <= N:
+            count += i
 
     print(A)
     print(count)
