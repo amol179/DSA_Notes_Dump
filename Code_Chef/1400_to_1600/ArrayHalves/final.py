@@ -11,7 +11,9 @@ for _ in range(t):
     for i in range(2 * N):
 
         if A[i] <= N:
+            print(A[i])
             count += i - j
+            print("count:", count)
 
             j += 1
 

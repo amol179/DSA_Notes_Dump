@@ -6,13 +6,15 @@ for _ in range(t):
 
     count = 0
 
-    j = 0
+    j = 1
 
     for i in range(2 * N):
 
         if A[i] <= N:
-            count += i - j
-
+            print(A[N - j])
+            A[i], A[N - j] = A[N - j], A[i]
             j += 1
+            count += 1
+            print(A)
 
     print(count)

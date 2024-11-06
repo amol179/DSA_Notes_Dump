@@ -21,3 +21,4 @@ for _ in range(t):
             print("YES")
         else:
             print("NO")
+# min + max <=K
