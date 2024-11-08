@@ -6,9 +6,10 @@ for _ in range(t):
     max_diff = 0
     for i in range(len(A) - 1):
         Diff = A[i + 1] - A[i]
-        if max_diff > Diff:
+        if max_diff < Diff:
             max_diff = Diff
-            
+
     print(max_diff)
-    
-    if ma
+
+    if max_diff == 0:
+        print("UNFIT")
