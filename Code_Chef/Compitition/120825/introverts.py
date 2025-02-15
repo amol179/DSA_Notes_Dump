@@ -1,113 +1,105 @@
 import sys
-import bisect
 
 def is_valid_permutation(N, P):
-    """
-    Given an integer N and a permutation P of [1..N] representing the final seating
-    arrangement (where the i-th number in P is the person sitting in seat i, seats numbered 1..N),
-    this function simulates a “greedy” seating process:
-    
-      - Person 1 must sit at an endpoint (seat 1 or seat N).
-      - For persons 2 through N (in increasing order), when they arrive they choose a seat 
-        from among the currently available seats that maximizes the distance to the nearest occupied seat.
-      - If more than one seat is optimal (i.e. gives the same maximum distance), either choice is allowed.
-    
-    The available seats are maintained as disjoint intervals. Each interval is stored as a tuple (l, r)
-    meaning that the free seats are l+1, l+2, …, r-1. (Here l or r may be “artificial” boundaries:
-    0 or N+1.)
-    
-    In an interval:
-      - If it touches the left end (l == 0), the only optimal seat is l+1.
-      - If it touches the right end (r == N+1), the only optimal seat is r-1.
-      - Otherwise (both boundaries are occupied), if the number of free seats is odd the unique
-        optimal seat is the middle seat, and if even, the two central seats are both allowed.
-    
-    The function returns True if the seating order (determined by the positions of person 1, 2, …, N)
-    is consistent with such a process; otherwise it returns False.
-    """
-    # Build a mapping: pos[x] is the seat (1-indexed) where person x sits.
-    pos = [0] * (N + 1)
+    # Build an array pos so that pos[x] is the seat (1-indexed) where person x sits.
+    pos = [0]*(N+1)
     for i, person in enumerate(P):
         pos[person] = i + 1
-
-    # Person 1 must sit at an endpoint.
-    if pos[1] not in (1, N):
+    # Person 1 must be at an endpoint.
+    if pos[1] != 1 and pos[1] != N:
         return False
 
-    # intervals is a list of available intervals sorted by the left boundary.
-    # An interval (l, r) represents free seats: l+1, l+2, ..., r-1.
-    intervals = []
+    # Initial free interval:
+    # If Person 1 sits at seat 1 then the free seats are 2..N, represented by (1, N+1).
+    # Otherwise (Person 1 sits at N) the free seats are 1..N-1, represented by (0, N).
     if pos[1] == 1:
-        # Person 1 sits at the left end.
-        # The only available seats are 2 through N, so we set boundaries as (1, N+1)
-        # (1 is occupied and N+1 is an artificial boundary).
-        intervals.append((1, N + 1))
+        init_interval = (1, N + 1)
     else:
-        # Person 1 sits at the right end.
-        intervals.append((0, N))  # (0 is artificial, N is occupied)
+        init_interval = (0, N)
 
-    # Helper: insert an interval if it contains any free seats.
-    def insert_interval(interval):
-        l, r = interval
-        if r - l - 1 > 0:
-            bisect.insort(intervals, interval)
+    # Inline functions for potential and allowed candidate(s).
+    # We use bit‐shifts for integer division by 2.
+    def get_pot(l, r):
+        if l == 0:
+            return r - 1
+        elif r == N + 1:
+            return N - l
+        else:
+            return (r - l) >> 1  # equivalent to (r-l)//2
 
-    # Process persons 2 through N (in increasing order).
+    def get_allowed(l, r):
+        if l == 0:
+            return (1,)
+        elif r == N + 1:
+            return (N,)
+        else:
+            gap = r - l - 1
+            if gap & 1:  # odd gap
+                return (l + ((gap + 1) >> 1),)
+            else:
+                mid = l + (gap >> 1)
+                return (mid, mid + 1)
+
+    # Create buckets: an array (index 0..N) of dictionaries.
+    # For each interval with potential p, for each allowed candidate s,
+    # we store buckets[p][s] = (l, r).
+    buckets = [dict() for _ in range(N + 1)]
+    init_pot = get_pot(init_interval[0], init_interval[1])
+    for cand in get_allowed(init_interval[0], init_interval[1]):
+        buckets[init_pot][cand] = init_interval
+    max_pot = init_pot
+
+    # Process persons 2 through N in increasing order.
     for person in range(2, N + 1):
         s = pos[person]
-        # Locate the interval that contains seat s.
-        # Since intervals are sorted by left boundary, we use bisect.
-        i = bisect.bisect_right(intervals, (s, float('inf'))) - 1
-        if i < 0:
+        # Adjust max_pot downward if needed.
+        while max_pot >= 0 and not buckets[max_pot]:
+            max_pot -= 1
+        if max_pot < 0:
+            return False  # no active interval remains
+        # The chosen seat must be an allowed candidate from an interval with maximum potential.
+        if s not in buckets[max_pot]:
             return False
-        l, r = intervals[i]
-        if not (l < s < r):
-            return False
-
-        # Determine the allowed (optimal) candidate seat(s) for interval (l, r).
-        if l == 0:
-            # Interval touches the left end: the only allowed seat is l+1.
-            allowed = {l + 1}
-        elif r == N + 1:
-            # Interval touches the right end: the only allowed seat is r-1.
-            allowed = {r - 1}
-        else:
-            # Both boundaries are actual occupied seats.
-            available = r - l - 1  # number of free seats in (l, r)
-            if available % 2 == 1:
-                # A unique middle seat.
-                candidate = l + (available + 1) // 2
-                allowed = {candidate}
-            else:
-                # Two optimal choices (both central seats yield the same minimum distance).
-                candidate1 = l + available // 2
-                candidate2 = candidate1 + 1
-                allowed = {candidate1, candidate2}
-
-        if s not in allowed:
-            return False
-
-        # Remove the interval (l, r) and add back the two new intervals after seating at s.
-        intervals.pop(i)
-        insert_interval((l, s))
-        insert_interval((s, r))
-        
+        # Retrieve and remove the interval from which s is chosen.
+        interval = buckets[max_pot].pop(s)
+        l, r = interval
+        # If the interval has two allowed candidates, remove the other candidate as well.
+        for cand in get_allowed(l, r):
+            if cand != s:
+                if cand in buckets[max_pot] and buckets[max_pot][cand] == interval:
+                    del buckets[max_pot][cand]
+        # Split the interval at seat s into up to two new intervals.
+        if s - l - 1 > 0:
+            new_interval = (l, s)
+            new_pot = get_pot(new_interval[0], new_interval[1])
+            for cand in get_allowed(new_interval[0], new_interval[1]):
+                buckets[new_pot][cand] = new_interval
+            if new_pot > max_pot:
+                max_pot = new_pot
+        if r - s - 1 > 0:
+            new_interval = (s, r)
+            new_pot = get_pot(new_interval[0], new_interval[1])
+            for cand in get_allowed(new_interval[0], new_interval[1]):
+                buckets[new_pot][cand] = new_interval
+            if new_pot > max_pot:
+                max_pot = new_pot
     return True
 
+    
 def main():
-    data = sys.stdin.read().strip().split()
+    data = sys.stdin.read().split()
     if not data:
         return
     t = int(data[0])
     index = 1
-    results = []
+    output_lines = []
     for _ in range(t):
         N = int(data[index])
         index += 1
         P = list(map(int, data[index:index + N]))
         index += N
-        results.append("YES" if is_valid_permutation(N, P) else "NO")
-    print("\n".join(results))
-
+        output_lines.append("YES" if is_valid_permutation(N, P) else "NO")
+    sys.stdout.write("\n".join(output_lines))
+    
 if __name__ == "__main__":
     main()
