@@ -1,0 +1,155 @@
+/* Resetting some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Section */
+header {
+    background-color: #007BFF;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Featured Artists Section */
+#featured-artists {
+    padding: 40px;
+    text-align: center;
+}
+
+#featured-artists h2 {
+    font-size: 2rem;
+    color: #007BFF;
+}
+
+#featured-artists p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.artist-card {
+    display: inline-block;
+    width: 30%;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+}
+
+.artist-card h3 {
+    font-size: 1.5rem;
+}
+
+.artist-card img {
+    border-radius: 8px;
+}
+
+/* Event Booking Section */
+#event-booking {
+    background-color: #28a745;
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+#event-booking h2 {
+    font-size: 2rem;
+}
+
+#event-booking p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form input, form select, form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+/* Testimonials Section */
+#testimonials {
+    padding: 40px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+#testimonials h2 {
+    font-size: 2rem;
+    color: #007BFF;
+}
+
+.testimonial {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 60%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* Footer Section */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer p {
+    font-size: 1rem;
+}
+
+footer a {
+    color: #28a745;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
