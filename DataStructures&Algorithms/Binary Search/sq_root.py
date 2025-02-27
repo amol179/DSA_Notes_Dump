@@ -1,6 +1,6 @@
 # Problem  from - https://www.youtube.com/shorts/vuj9OnJaHnE
 
-# pritty simple application of the Binary search
+# simple application of the Binary search
 #
 
 
