@@ -2,6 +2,7 @@ def solve():
     import sys
 
     # sys
+
     data = sys.stdin.read().strip().split()
     t = int(data[0])
     idx = 1
