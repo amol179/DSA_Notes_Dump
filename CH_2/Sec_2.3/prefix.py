@@ -4,8 +4,6 @@ LANG: PYTHON3
 TASK: prefix
 """
 
-
-
 with open("prefix.in", "r") as f:
     lines = f.readlines()
 
