@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation | Music Booking Agency</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Booking Confirmation</h1>
+        <p>Thank you for booking with us!</p>
+    </header>
+
+    <!-- Booking Information Section -->
+    <section id="booking-info">
+        <h2>Your Booking Details</h2>
+        <div class="booking-details">
+            <p><strong>Artist:</strong> <span id="artist-name"></span></p>
+            <p><strong>Event Date:</strong> <span id="event-date"></span></p>
+            <p><strong>Event Location:</strong> <span id="event-location"></span></p>
+        </div>
+    </section>
+
+    <!-- Next Steps Section -->
+    <section id="next-steps">
+        <h2>Next Steps</h2>
+        <p>We will reach out to you shortly to confirm your booking and discuss any further details.</p>
+        <p>If you have any questions, feel free to <a href="mailto:info@musicbookingagency.com">contact us</a>.</p>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>© 2024 Nondaba Booking Agency. All Rights Reserved.</p>
+        <p>Contact us: <a href="mailto:info@nondababookingagency.com">info@noondababookingagency.com</a></p>
+        <p>Follow us:</p>
+        <a href="https://www.facebook.com/share/1BQm6uAtpW/?mibextid=LQQJ4d" target="_blank">Facebook</a>   
+        <a href="https://www.instagram.com/aviator_lover_of_the_sky/profilecard/?igsh=MTQ2a2g5NjByeHZuMg==" target="_blank">Instagram</a>
+    </footer>
+
+    <script>
+        // Getting the booking information from the URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const artist = urlParams.get('artist');
+        const eventDate = urlParams.get('event-date');
+        const eventLocation = urlParams.get('event-location');
+
+        // Display the booking information
+        document.getElementById('artist-name').textContent = artist;
+        document.getElementById('event-date').textContent = eventDate;
+        document.getElementById('event-location').textContent = eventLocation;
+    </script>
+</body>
+</html>

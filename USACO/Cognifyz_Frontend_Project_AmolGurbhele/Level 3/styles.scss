@@ -1,0 +1,50 @@
+// Define color variables
+$primary-color: #007bff;
+$secondary-color: #28a745;
+$background-color: #f4f4f9;
+$text-color: #333;
+$white: #ffffff;
+
+// Define font sizes
+$font-size-large: 3rem;
+$font-size-medium: 1.2rem;
+$font-size-small: 1em;
+
+// Using variables and nesting
+body {
+    font-family: Arial, sans-serif;
+    background-color: $background-color;
+    color: $text-color;
+
+    h1 {
+        color: $white;
+        font-size: $font-size-large;
+    }
+
+    button {
+        background-color: $secondary-color;
+        border-radius: 5px;
+        color: $white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: darken($secondary-color, 10%);
+        }
+    }
+
+    #posts {
+        padding: 40px;
+        background-color: $background-color;
+        text-align: center;
+
+        .post {
+            margin: 20px;
+            background-color: $white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
