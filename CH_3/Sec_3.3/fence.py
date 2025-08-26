@@ -13,8 +13,9 @@ def dfs(u, adj, path):
     path.append(u)
 
 def main():
-    with open("fence.in", "r") as fin:
-        lines = fin.readlines()
+    fin = open("fence.in", "r")
+    lines = fin.readlines()
+    fin.close()
 
     F = int(lines[0])
     adj = [[] for _ in range(501)]
@@ -28,7 +29,7 @@ def main():
     for i in range(501):
         adj[i].sort(reverse=True)
 
-    # Find starting point: smallest odd-degree node or smallest node with edges
+    # Find starting point
     start = 501
     for i in range(1, 501):
         if len(adj[i]) % 2 == 1:
@@ -42,8 +43,9 @@ def main():
     path = []
     dfs(start, adj, path)
 
-    with open("fence.out", "w") as fout:
-        for node in reversed(path):
-            fout.write(str(node) + "\n")
+    fout = open("fence.out", "w")
+    for node in reversed(path):
+        fout.write(str(node) + "\n")
+    fout.close()
 
 main()
